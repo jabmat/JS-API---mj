@@ -6,7 +6,7 @@ console.log('12.09 19:15 API start:');
 // a) document.querySelector()
 // Przyjmuje jako argument selektor CSSowy, zwraca pierwszy pasujący element, jeżeli nie znajdzie nic to zwraca null
 
-const navH1 = document.querySelector('#nav-h1'); // po #ed
+const navH1 = document.querySelector('#nav-h1'); // po #id
 // console.log(navH1);
 // console.log(typeof navH1);
 
@@ -30,7 +30,7 @@ const navSpansList = [...navSpans]; // zamiana z node listy na zwykłą
 const contentDiv = document.getElementById('content'); // nie musimy dawać "#", bo już ta metoda szuka po ID
 // console.log(contentDiv);
 
-// d) document.getElmeentsByClassName
+// d) document.getElementsByClassName
 // Przyjmuje jako argument nazwę klasy, zwraca HTMLCollection, jeżeli nie znajdzie nic to zwraca null.
 
 const paragraphs = document.getElementsByClassName('article-paragraph');
@@ -67,5 +67,170 @@ const middleLi = list.children[1];
 // console.log(middleLi.parentElement);
 
 // Zad 1.
-// Zapisz w zmiennych wszystkie ele,enty występujące w naszym dokumencie HTML. Staraj się nie modyfikować samego kodu HTML, lecz jeżęli będzie to konieczne, zrób to.
+// Zapisz w zmiennych wszystkie elementy występujące w naszym dokumencie HTML. Staraj się nie modyfikować samego kodu HTML, lecz jeżęli będzie to konieczne, zrób to.
 console.log('20:52 Zad. 1:');
+// rozwiązanie prowadzącego
+// const navElement1 = document.querySelector('nav');
+// console.log(navElement1);
+// const navH1Element = document.getElementById('nav-h1');
+// console.log(navH1Element);
+// const [span1, span2, span3, span4] =
+// 	document.getElementsByClassName('nav-span');
+// console.log(span1, span2, span3, span4);
+// const contentDiv1 = document.getElementById('content');
+// console.log(contentDiv1);
+// const [firstH2, secondH2, thirdH2, fourthH2] =
+// 	document.getElementsByTagName('h2');
+// console.log(firstH2, secondH2, thirdH2, fourthH2);
+const [article1, article2, article3, article4] =
+	document.querySelectorAll('article');
+// console.log(article1, article2, article3, article4);
+const [p1, p2, p3, p4] = document.getElementsByClassName('article-paragraph');
+// console.log(p1, p2, p3, p4);
+// const listElement = document.querySelector('ul');
+// console.log(listElement);
+// const [li1, li2, li3] = listElement.children;
+// console.log(li1, li2, li3);
+
+// 3. Tworzenie i dodawanie elementów
+console.log('3. Tworzenie i dodawanie elementów 13.09 18:05');
+// a) document.createElement()
+// Tworzy obiektową reprezentację podanego w argumencie elementu
+// const additionalLi = document.createElement('li');
+// additionalLi.textContent = 'This was appended using .appendChild() method.';
+// console.log(additionalLi);
+
+// b) element.appendChild()
+// Metoda doda nowy element dziecko jako ostatnie z dzieci elementu na którym została wywołana
+// list.appendChild(additionalLi);
+
+// c) element.insertBefore()
+// metoda doda nowy element dziecko (1 argument) przed inny element dziecko tego samego elementu podany na drugim argumencie.
+// const additionalLi2 = document.createElement('li');
+// additionalLi2.textContent = 'This is second additional li.';
+// chcemy wrzucić między 1 a 2 element listy
+// list.insertBefore(additionalLi2, list.children[1]);
+
+// d) string + element.insertAdjacentHTML()
+// const html = `
+// <li id='li-to-remove'>Element inserted insertAdjacentHTML method.
+// </li>
+// `;
+// list.insertAdjacentHTML('afterbegin', html);
+// list.insertAdjacentHTML('afterend', html);
+// list.insertAdjacentHTML('beforebegin', html);
+// list.insertAdjacentHTML('beforeend', html);
+
+// 4. Usuwanie elementów
+// a) czyszczenie zawartości elementów przy pomocy innerHTML.
+// console.log(article1.innerHTML);
+// article1.innerHTML = '';
+// article1.innerHTML = '<span>123</span>';
+
+// b) element.remove()
+// Podstawowa metoda usuwania elementów ze strony, po prostu usuwa element na którym została wywołana.
+// const liToRemove = document.getElementById('li-to-remove');
+// liToRemove.remove();
+
+// c) element.removeChild()
+// Metoda usuwa wskazany element dziecko elementu na którym została wywołana
+// list.removeChild(list.children[1]);
+
+// 5. ZAMIANA ELEMENTÓW
+// a) element.replaceChild()
+// Metoda zamienia elementy dzieci w elemencie na którym zostanie wywołana. Na pierwszym argumencie przyjmuje nowy element (do wstawienia), na drugim stary element (do usunięcia).
+// list.replaceChild(liToRemove, list.lastElementChild);
+
+// 6. KLONOWANIE ELEMENTÓW
+// a) element.cloneNode()
+// Metoda sklonuje element.
+
+// a.1) klonowanie płytkie // same tagi i atrybuty
+// const shallowDivClone = contentDiv.cloneNode(false);
+// console.log(shallowDivClone);
+
+// a.2) klonowanie głębokie // wszystko, tagi atrybuty, pełny element
+// const deepDivClone = contentDiv.cloneNode(true);
+// console.log(deepDivClone);
+
+// 7.  AKTUALIZACJA/DODAWANIE/USUWANIE ZAWARTOŚCI ELEMENTÓW
+// a) element.textContent
+// Metody stosowane zamiennie, jednak standardem jest textContent, więc to właśnie jego powinniśmy używać najczęściej
+// console.log(liToRemove.textContent);
+// console.log(liToRemove.innerText);
+// liToRemove.textContent = '123';
+// liToRemove.innerText = '321';
+
+// b) element.innerHTML
+// console.log(contentDiv);
+// contentDiv.innerHTML = '<p>456</p>';
+
+// c) element.appendChild()
+
+// 8. AKTUALIZACJA/DODAWANIE/USUWANIE ATRYBUTÓW ELEMENTÓW
+// a) element.attributes
+// Główne zastosowanie .attributes to sprawdzenie ilości atrybutów danego elementu
+// console.log(p3.attributes.length); // ile ma atrybutów, jeśli są
+
+// b) element.setAttribute()
+// Metoda w pierwszym argumencie przyjmuje nazwę atrybutu do dodana, w drugim argumencie przyjmuje wartość atrybutu do dodania.
+// p3.setAttribute('id', 'third-paragraph');
+// console.log(p3); // uważać na nazwę atrybutu, literówki, bo IDE nie zwróci błędu
+
+// c) element.id
+// Nadpisanie ID danego elementu
+// p3.id = '123';
+// console.log(p3);
+
+// d) element.className
+// Nadpisanie klasy danego elementu
+// p3.className = '321';
+// e) element.removeAttribute()
+// Metoda suwa atrybut podany w argumencie z elementu na któym została wywołana
+// p3.removeAttribute('id');
+// console.log(p3);
+
+// Zad 2.
+// a) Usuń wszystkie elementy z body przy pomocy element.remove()
+// b) Odtwórz stronę przy pomocy wcześniej poznanych metod (document.createElement, insertAdjacentHTML, setAttribute, appendChild itd.).
+
+// ad. a) usuwanie
+const removeNav = document.querySelector('nav');
+removeNav.remove();
+
+// const navH1 = document.querySelector('#nav-h1'); // po #id
+
+const removeContent = document.querySelector('#content');
+removeContent.remove();
+
+// navRemove.remove();
+
+// ad. b) dodawanie
+const addNav = document.createElement('nav');
+const addNavH1 = document.createElement('h1');
+addNavH1.setAttribute('id', 'nav-h1');
+addNavH1.textContent = 'DOM';
+addNav.appendChild(addNavH1);
+
+const addSpanH = document.createElement('span');
+addSpanH.setAttribute('class', 'nav-span');
+addSpanH.textContent = 'Home';
+const addSpan1 = document.createElement('span');
+addSpan1.setAttribute('class', 'nav-span');
+addSpan1.textContent = 'Page 1';
+const addSpan2 = document.createElement('span');
+addSpan2.setAttribute('class', 'nav-span');
+addSpan2.textContent = 'Page 2';
+const addSpan3 = document.createElement('span');
+addSpan3.setAttribute('class', 'nav-span');
+addSpan3.textContent = 'Page 3';
+
+addNav.appendChild(addSpanH);
+addNav.appendChild(addSpan1);
+addNav.appendChild(addSpan2);
+addNav.appendChild(addSpan3);
+
+document.body.appendChild(addNav); // dodanie do body
+
+// logi - sprawdzające
+console.log(addNav);
