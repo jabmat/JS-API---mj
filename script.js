@@ -402,5 +402,80 @@ const displayForm = () => {
 displayForm();
 // ---kontynuacja rozwiązania prowadzącego - MJ---
 // ---kontynuacja rozwiązania prowadzącego - K---
-
+// (wkleić z maina)
 // ---kontynuacja rozwiązania prowadzącego - K---
+
+// ----eventy----
+// const contactForm = document.getElementById('contact-form');
+// contactForm.addEventListener('submit', function (event) {
+// 	// TYLKO PRZY REAGOWANIU NA SUBMIT
+// 	event.preventDefault();
+// 	console.log('Form submited');
+// 	console.log(event);
+
+// 	// jak odczytać wartość inputów?
+// 	const input = document.getElementById('contact-form-input-email');
+// 	const textarea = document.getElementById('contact-form-textarea');
+// 	const inputValue = input.value;
+// 	const textareaValue = textarea.value;
+// 	console.log(inputValue);
+// 	console.log(textareaValue);
+// });
+// ----eventy----
+
+// ----podstrony----
+// console.log(navSpans[0]);
+// navSpans[0].addEventListener('click', function () {
+// 	console.log(123)
+// })
+
+const homeSpans = document.getElementsByClassName('nav-span');
+
+homeSpans[0].addEventListener('click', function () {
+	console.log(123);
+	contentDivToAdd.innerHTML = '';
+	renderHomePage();
+});
+
+homeSpans[1].addEventListener('click', function () {
+	contentDivToAdd.innerHTML = '';
+	displayForm();
+});
+
+// ----podstrony----
+
+// Zad. 4
+// "https://jsonplaceholder.typicode.com/todos/"
+// 1. Stwórz funkcję fetchAndDisplayJSON (async)
+// W funkcji:
+// 2. Wykonaj fetcha i rozpakuj dane (fetch, .json())
+// 3. Stwórz element <ul>
+// 4. Za pomocą metody .map(), przejeżdżając po otrzymanych danych, stwórz listę z elementami li (w środku funkcji callbackowej mapa musisz stworzyć element <li>, w zależności od pola completed) ustawić kolor na zielony lub czerwony oraz ustawić textContent w którym ma się znaleźć User id, id, title, na końcu funckji callbackowej zwróć skonfigurowany element li)
+// element.style.color = 'red' lub 'green'
+// textContent: `User id: ${el.userId}, Todo id: ${el.id}, ${el.title}
+// return li
+// 5. Za pomocą pętli forEach podepnij wszystkie li do listy <ul> (pkt 2)
+// 6. Podpenij <ul> (pkt 3) do content div.
+// (koniec funkcji)
+// 7. Stwórz nową podstronę (homeSpans[2].addEventListener('click' ...)), w środku event Listenera wywołaj fetchAndDisplayJSON
+
+// const liList = data.map((el) => {
+// 	// const li = ...
+// 	// if(el.completed) li.style.color = 'green'
+// 	// else li.style.color = 'red'
+// 	// li.textContent
+// 	// return li
+// });
+
+// -----rozwiązanie - MJ----
+// 1.)
+const fetchAndDisplayJSON = async () => {
+	// 2.)
+	const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+	const data = await response.json();
+	console.log(response.status);
+	console.log(data, typeof data);
+};
+
+fetchAndDisplayJSON();
+// -----rozwiązanie - MJ----
