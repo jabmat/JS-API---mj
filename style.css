@@ -31,3 +31,15 @@ article {
 ul {
 	margin-left: 2vw;
 }
+
+/* style do zadania 3 */
+#contact-form-input-email {
+	border-width: 5px;
+}
+#contact-form-textarea {
+	border-width: 2px;
+}
+#contact-form-submit-button {
+	border-color: brown;
+}
+/* style do zadania 3 */

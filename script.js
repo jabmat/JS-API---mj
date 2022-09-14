@@ -195,42 +195,212 @@ console.log('3. Tworzenie i dodawanie elementów 13.09 18:05');
 // b) Odtwórz stronę przy pomocy wcześniej poznanych metod (document.createElement, insertAdjacentHTML, setAttribute, appendChild itd.).
 
 // ad. a) usuwanie
-const removeNav = document.querySelector('nav');
-removeNav.remove();
+// --------rozwiązanie - MJ-----------
+// const removeNav = document.querySelector('nav');
+// removeNav.remove();
 
-// const navH1 = document.querySelector('#nav-h1'); // po #id
+// // const navH1 = document.querySelector('#nav-h1'); // po #id
 
-const removeContent = document.querySelector('#content');
-removeContent.remove();
+// const removeContent = document.querySelector('#content');
+// removeContent.remove();
 
-// navRemove.remove();
+// // navRemove.remove();
 
-// ad. b) dodawanie
-const addNav = document.createElement('nav');
-const addNavH1 = document.createElement('h1');
-addNavH1.setAttribute('id', 'nav-h1');
-addNavH1.textContent = 'DOM';
-addNav.appendChild(addNavH1);
+// // ad. b) dodawanie
+// // -----nav--------
+// const addNav = document.createElement('nav');
+// const addNavH1 = document.createElement('h1');
+// addNavH1.setAttribute('id', 'nav-h1');
+// addNavH1.textContent = 'DOM';
+// addNav.appendChild(addNavH1);
 
-const addSpanH = document.createElement('span');
-addSpanH.setAttribute('class', 'nav-span');
-addSpanH.textContent = 'Home';
-const addSpan1 = document.createElement('span');
-addSpan1.setAttribute('class', 'nav-span');
-addSpan1.textContent = 'Page 1';
-const addSpan2 = document.createElement('span');
-addSpan2.setAttribute('class', 'nav-span');
-addSpan2.textContent = 'Page 2';
-const addSpan3 = document.createElement('span');
-addSpan3.setAttribute('class', 'nav-span');
-addSpan3.textContent = 'Page 3';
+// const addSpanH = document.createElement('span');
+// addSpanH.setAttribute('class', 'nav-span');
+// addSpanH.textContent = 'Home';
+// const addSpan1 = document.createElement('span');
+// addSpan1.setAttribute('class', 'nav-span');
+// addSpan1.textContent = 'Page 1';
+// const addSpan2 = document.createElement('span');
+// addSpan2.setAttribute('class', 'nav-span');
+// addSpan2.textContent = 'Page 2';
+// const addSpan3 = document.createElement('span');
+// addSpan3.setAttribute('class', 'nav-span');
+// addSpan3.textContent = 'Page 3';
 
-addNav.appendChild(addSpanH);
-addNav.appendChild(addSpan1);
-addNav.appendChild(addSpan2);
-addNav.appendChild(addSpan3);
+// addNav.appendChild(addSpanH);
+// addNav.appendChild(addSpan1);
+// addNav.appendChild(addSpan2);
+// addNav.appendChild(addSpan3);
 
-document.body.appendChild(addNav); // dodanie do body
+// document.body.appendChild(addNav); // dodanie Nav do body
+// // -----nav--------
 
-// logi - sprawdzające
-console.log(addNav);
+// // -----div id="content"--------
+// const addDiv = document.createElement('div');
+// addDiv.setAttribute('id', 'content');
+
+// // -----article 1--------
+// const addArt1 = document.createElement('article');
+
+// const addH2 = document.createElement('h2');
+// addH2.textContent = "Introduction to JavaScript's Document Object Model.";
+// addArt1.appendChild(addH2);
+
+// const addPA1 = document.createElement('p');
+// addPA1.setAttribute('class', 'article-paragraph');
+// addPA1.textContent =
+// 	'The Document Object Model (DOM) is the data representation of the objects that comprise the structure and content of a document on the web. This guide will introduce the DOM, look at how the DOM represents an HTML document in memory and how to use APIs to create web content and applications.';
+// addArt1.appendChild(addPA1);
+
+// addDiv.appendChild(addArt1);
+// // -----article 1--------
+
+// // -----article 2--------
+
+// // -----article 2--------
+
+// // -----article 3--------
+
+// // -----article 3--------
+
+// // -----article 4--------
+
+// // -----article 4--------
+
+// document.body.appendChild(addDiv);
+// // document.body.appendChild(spanTextContents);
+
+// // -----div id="content"--------
+
+// // logi - sprawdzające
+// console.log(addNav);
+// console.log(addDiv);
+// // console.log(document);
+// --------rozwiązanie - MJ-----------
+
+// --------rozwiązanie - prowadzący-----------
+// a)
+navElement.remove();
+contentDiv.remove();
+
+const navElementToAdd = document.createElement('nav');
+// <h1 id="nav-h1">DOM</h1>
+const h1Element = document.createElement('h1');
+h1Element.setAttribute('id', 'nav-h1');
+h1Element.textContent = 'DOM';
+navElementToAdd.appendChild(h1Element);
+
+/* <span class="nav-span">Home</span>
+      <span class="nav-span">Page 1</span>
+      <span class="nav-span">Page 2</span>
+      <span class="nav-span">Page 3</span> */
+
+const spanTextContents = ['Home', 'Page 1', 'Page 2', 'Page 3'];
+// spanTextContents.forEach((text) => {
+// 	const span = document.createElement('span');
+// 	span.setAttribute('class', 'nav-span');
+// 	span.textContent = text;
+// 	navElementToAdd.appendChild(span);
+// });
+
+// navElementToAdd.children[2];
+
+for (let i = 0; i < 4; i++) {
+	if (i === 0) {
+		const span = document.createElement('span');
+		span.setAttribute('class', 'nav-span');
+		span.textContent = 'Home';
+		navElementToAdd.appendChild(span);
+	} else {
+		const span = document.createElement('span');
+		span.setAttribute('class', 'nav-span');
+		span.textContent = `Page ${i}`;
+		navElementToAdd.appendChild(span);
+	}
+}
+document.body.appendChild(navElementToAdd);
+
+const contentDivToAdd = document.createElement('div');
+contentDivToAdd.setAttribute('id', 'content');
+
+/* <article >
+<h2>How to access the DOM?</h2>
+<p class="article-paragraph">
+  You don't have to install anything additional, just JavaScript will
+  do. We have a few methods called 'selectors', these methods are used
+  to access DOM elements and are found on the global 'document' object, which is an object representation of the whole HTML document. Here are <strong>some</strong> of them:
+  <ul>
+    <li>document.querySelector('cssSelectorHere')</li>
+    <li>document.getElementById('elementsIdHere')</li>
+    <li>document.getElementsByClassName('classNameHere')</li>
+  </ul>
+</p class="article-paragraph">
+</article> */
+
+const renderHomePage = () => {
+	const articleToAdd = document.createElement('article');
+	const h2ToAdd = document.createElement('h2');
+	h2ToAdd.textContent = 'How to access the DOM?';
+	articleToAdd.appendChild(h2ToAdd);
+	const pToAdd = document.createElement('p');
+	pToAdd.setAttribute('class', 'article-paragraph');
+	pToAdd.textContent = `You don't have to install anything additional, just JavaScript will
+  do. We have a few methods called 'selectors', these methods are used
+  to access DOM elements and are found on the global 'document' object, which is an object representation of the whole HTML document. Here are some of them:`;
+	const ulToAdd = document.createElement('ul');
+	const liTextContents = [
+		"document.querySelector('cssSelectorHere')",
+		"document.getElementById('elementsIdHere')",
+		"document.getElementsByClassName('classNameHere')",
+	];
+	liTextContents.forEach((text) => {
+		const li = document.createElement('li');
+		li.textContent = text;
+		ulToAdd.appendChild(li);
+	});
+	pToAdd.appendChild(ulToAdd);
+	articleToAdd.appendChild(pToAdd);
+	contentDivToAdd.appendChild(articleToAdd);
+};
+renderHomePage();
+document.body.appendChild(contentDivToAdd);
+// --------rozwiązanie - prowadzący-----------
+
+// Zad 3. Formularz kontaktowy
+// a) Stwórz funkcję displayForm()
+// W funkcji:
+// b) stwórz element <form> i nadaj mu id 'contact-form'
+// c) stwórz element <h2> i nadaj mu textContent 'Contact us!'
+// d) stwórz element <input> i nadj mu type 'email' oraz id 'contact-form-input-email'
+// e) stwórz element <textarea> i nadaj mu id 'contact-form-textarea'
+// f) stwórz element <button> i nadaj mu type 'submit', id 'contact-form-submit-button' oraz textContent na 'Send'
+// g) podepnij wszystkie elementy (przy pomocy metody appendChild) do elementu form, a sam form podepnij do diva content
+// h) testowo wywołaj funkcje
+
+// ---kontynuacja rozwiązania prowadzącego - MJ---
+// a)
+const displayForm = () => {
+	const addForm = document.createElement('form');
+	addForm.setAttribute('id', 'contact-form');
+	const addFH2 = document.createElement('h2');
+	addFH2.textContent = 'Contact us!';
+	const addInput = document.createElement('input');
+	addInput.setAttribute('type', 'email');
+	addInput.setAttribute('id', 'contact-form-input-email');
+	const addtextArea = document.createElement('textarea');
+	addtextArea.setAttribute('id', 'contact-form-textarea');
+	const addButton = document.createElement('button');
+	addButton.setAttribute('type', 'submit');
+	addButton.setAttribute('id', 'contact-form-submit-button');
+	addButton.textContent = 'Send';
+	addForm.appendChild(addFH2);
+	addForm.appendChild(addInput);
+	addForm.appendChild(addtextArea);
+	addForm.appendChild(addButton);
+	contentDivToAdd.appendChild(addForm);
+};
+displayForm();
+// ---kontynuacja rozwiązania prowadzącego - MJ---
+// ---kontynuacja rozwiązania prowadzącego - K---
+
+// ---kontynuacja rozwiązania prowadzącego - K---
