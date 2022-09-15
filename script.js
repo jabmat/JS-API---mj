@@ -537,6 +537,23 @@ homeSpans[2].addEventListener('click', function () {
 // W metodzie forEach:
 // - podepnij element po którym aktualnie iterujesz (pierwszy parametr metody forEach) do wcześniej stworzonego elementu <select>
 // console.log(select)
+// 8. Stwórz element <button>
+// - nadaj mu type 'submit'
+// - nadaj mu id 'calculator-submit-button'
+// - nadaj mu textContent 'GO'
+// 9. Stwórz element <span>
+// - nadaj mu id 'result-span'
+// 10. Stwórz element <h2>
+// - nadaj mu textContent 'Calculator'
+// 11. Podepnij wszystkie stworzone elementy do elementu <form> za pomocą metody appendChild, kolejność:
+// - h2
+// - firstNumberInput
+// - secondNumberInput
+// - select
+// - submitButton
+// - resultSpan
+// 12. Podepnij element <form> do content diva.
+// 13. Stwórz nową podstronę i tam wyświetlaj kalkulator.
 
 // 1.)
 const renderCalculator = () => {
@@ -558,16 +575,38 @@ const renderCalculator = () => {
 	const optionElements = options.map((opt) => {
 		const option = document.createElement('option');
 		option.setAttribute('value', opt);
-		option.textContent = `${opt}`;
+		option.textContent = opt;
 		return option;
 	});
 	// 7.)
 	optionElements.forEach((el) => select.appendChild(el));
+	// 8.)
+	const submitButton = document.createElement('button');
+	submitButton.setAttribute('type', 'submit');
+	submitButton.setAttribute('id', 'calculator-submit-button');
+	submitButton.textContent = 'GO!';
+	// 9.)
+	const resultSpan = document.createElement('span');
+	resultSpan.setAttribute('id', 'result-span');
+	resultSpan.textContent = `result: `;
+
+	// 10.)
+	const h2 = document.createElement('h2');
+	h2.textContent = 'Calculator';
+	// 11.)
+	form.appendChild(h2);
 	form.appendChild(input1);
 	form.appendChild(input2);
 	form.appendChild(select);
+	form.appendChild(submitButton);
+	form.appendChild(resultSpan);
 	contentDivToAdd.appendChild(form);
 	console.log(select);
+	console.log(resultSpan);
 };
+// renderCalculator();
 
-renderCalculator();
+homeSpans[3].addEventListener('click', function () {
+	contentDivToAdd.innerHTML = '';
+	renderCalculator();
+});

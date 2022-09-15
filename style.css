@@ -43,3 +43,29 @@ ul {
 	border-color: brown;
 }
 /* style do zadania 3 */
+
+/* style do zadania 4 */
+#first-number-input {
+	border-width: 3px;
+}
+#second-number-input {
+	border-width: 3px;
+}
+#contact-form-submit-button {
+	border-color: brown;
+}
+select {
+	background-color: yellowgreen;
+}
+#calculator-submit-button {
+	background-color: orange;
+}
+#result-span {
+	display: block;
+	background-color: gray;
+	color: aquamarine;
+	height: 10px;
+	margin: 5px;
+	padding: 5px;
+}
+/* style do zadania 4 */
