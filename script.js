@@ -469,13 +469,105 @@ homeSpans[1].addEventListener('click', function () {
 
 // -----rozwiązanie - MJ----
 // 1.)
+// const fetchAndDisplayJSON = async () => {
+// 	// 2.)
+// 	const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+// 	const data = await response.json();
+// 	console.log(response.status);
+// 	console.log(data, typeof data);
+// 	// 3.)
+// 	const addUl = document.createElement('ul');
+// 	// 4.)
+// 	const liList = data.map((el) => {
+// 		const li = document.createElement('li');
+// 		if (el.completed) li.style.color = 'green';
+// 		else li.style.color = 'red';
+// 		li.textContent;
+// 		return li;
+// 	});
+// };
+
+// fetchAndDisplayJSON();
+// -----rozwiązanie - MJ----
+
+// -----rozwiązanie - prowadzący----
 const fetchAndDisplayJSON = async () => {
 	// 2.)
 	const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
 	const data = await response.json();
 	console.log(response.status);
 	console.log(data, typeof data);
+	// 3.)
+	const ul = document.createElement('ul');
+	// 4.)
+	const liElements = data.map((todo) => {
+		const li = document.createElement('li');
+		if (todo.completed) li.style.color = 'green';
+		else li.style.color = 'red';
+		li.textContent = `User id: ${todo.userId}, Todo id: ${todo.id}, ${todo.title}`;
+		return li;
+	});
+
+	// 5.
+	liElements.forEach((li) => ul.appendChild(li));
+	contentDivToAdd.appendChild(ul);
 };
 
-fetchAndDisplayJSON();
-// -----rozwiązanie - MJ----
+// fetchAndDisplayJSON(); // wywołanie funkcji
+
+homeSpans[2].addEventListener('click', function () {
+	contentDivToAdd.innerHTML = '';
+	fetchAndDisplayJSON();
+});
+// -----rozwiązanie - prowadzący----
+
+// Zad 4.1 Kalkulator
+// 1. Stwórz funkcje renderCalculator (zwykła fn)
+// 2. Stwórz element <form> i ustaw jego id na 'calculator'
+// 3. Stwórz 2 inputy, obu nadaj type 'number' (setAttribute), pierwszemu nadaj id 'first-number-input', drugiemu 'second-number-input'
+// 4. Stwórz element <select> (createElement)
+// 5. Stwórz zwykły array: ["+", "-", "*", "/"], nazwij go 'options'.
+// 6. Metodą map przejedź po arrayu options i zapisz wynik do zmiennej optionElements.
+// W metodzie map:
+// - stwórz element <option>
+// - nadaj mu atrybut value na aktualny element po którym iterujesz (pierwszy parametr metody map)
+// - nadaj mu textContent na aktualny element po którym iterujesz (pierwszy parametr metody map)
+// - zwróc z mapa element <option> przy pomocy return
+// 7. Wywołaj metode forEach na liście optionElements.
+// W metodzie forEach:
+// - podepnij element po którym aktualnie iterujesz (pierwszy parametr metody forEach) do wcześniej stworzonego elementu <select>
+// console.log(select)
+
+// 1.)
+const renderCalculator = () => {
+	// 2.)
+	const form = document.createElement('form');
+	form.setAttribute('id', 'calculator');
+	// 3.)
+	const input1 = document.createElement('input');
+	input1.setAttribute('type', 'number');
+	input1.setAttribute('id', 'first-number-input');
+	const input2 = document.createElement('input');
+	input2.setAttribute('type', 'number');
+	input2.setAttribute('id', 'second-number-input');
+	// 4.)
+	const select = document.createElement('select');
+	// 5.)
+	const options = ['+', '-', '*', '/'];
+	// 6.)
+	const optionElements = options.map((opt) => {
+		const option = document.createElement('option');
+		option.setAttribute('value', opt);
+		option.textContent = `${opt}`;
+		return option;
+	});
+	// 7.)
+	optionElements.forEach((el) => select.appendChild(el));
+	form.appendChild(input1);
+	form.appendChild(input2);
+	form.appendChild(select);
+	contentDivToAdd.appendChild(form);
+	console.log(select);
+};
+
+renderCalculator();
